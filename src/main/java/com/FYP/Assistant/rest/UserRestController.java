@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FYP.Assistant.dao.UserDAO;
@@ -23,7 +24,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/user")
-	public User getUser(@PathVariable String id) {
+	public User getUser(@RequestParam String id) {
 		
 		User user = userDAO.findById(Integer.parseInt(id));
 		
@@ -47,7 +48,7 @@ public class UserRestController {
 	}
 	
 	@DeleteMapping("/user")
-	public String deleteUser(@PathVariable String id) {
+	public String deleteUser(@RequestParam String id) {
 		userDAO.deleteById(Integer.parseInt(id));
 		
 		return "Deleted user id - " + id;

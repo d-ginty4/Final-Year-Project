@@ -1,6 +1,7 @@
 package com.FYP.Assistant.dao;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.hibernate.query.Query;
 import org.hibernate.Session;
@@ -19,6 +20,7 @@ public class UserDAO {
 		entityManager = theEntityManager;
 	}
 
+	@Transactional
 	public User findById(int userId) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
@@ -27,6 +29,7 @@ public class UserDAO {
 		return theUser;
 	}
 
+	@Transactional
 	public void deleteById(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
@@ -37,6 +40,7 @@ public class UserDAO {
 		theQuery.executeUpdate();
 	}
 
+	@Transactional
 	public void save(User theUser) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
