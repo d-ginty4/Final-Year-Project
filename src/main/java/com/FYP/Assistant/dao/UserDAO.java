@@ -46,4 +46,14 @@ public class UserDAO {
 		
 		currentSession.saveOrUpdate(theUser);
 	}
+
+	@Transactional
+	public User findByDetails(String name, String password) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String hql = "FROM User U WHERE U.username = '" + name + "'";
+		Query query = currentSession.createQuery(hql);
+		
+		return (User) query.list().get(0);
+	}
 }

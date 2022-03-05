@@ -1,6 +1,7 @@
 package com.FYP.Assistant.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,14 @@ public class UserRestController {
 	public User getUser(@RequestParam String id) {
 		
 		User user = userDAO.findById(Integer.parseInt(id));
+		
+		return user; 
+	}
+	
+	@GetMapping("/user/details")
+	public User getUserByUsernameAndPassword(@RequestParam String name, @RequestParam String password) {
+		
+		User user = userDAO.findByDetails(name, password);
 		
 		return user; 
 	}
