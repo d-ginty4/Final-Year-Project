@@ -37,9 +37,7 @@ public class Project {
 		
 	}
 
-	public Project(int userId, String name, String description, LocalDate dueDate, boolean status) {
-		super();
-		this.userId = userId;
+	public Project(String name, String description, LocalDate dueDate, boolean status) {
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;

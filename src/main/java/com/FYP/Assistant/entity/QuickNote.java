@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "quick_notes")
+@Table(name = "quick_note")
 public class QuickNote {
 
 	@Id
@@ -32,10 +32,11 @@ public class QuickNote {
 		
 	}
 
-	public QuickNote(String note, boolean status, int projectId) {
+	public QuickNote(String note, boolean status, int projectId, int userId) {
 		this.note = note;
 		this.status = status;
 		this.projectId = projectId;
+		this.userId = userId;
 	}
 
 	public int getId() {

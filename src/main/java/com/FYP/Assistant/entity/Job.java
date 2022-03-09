@@ -41,7 +41,6 @@ public class Job {
 	}
 
 	public Job(int userId, int projectId, LocalDate dueDate, String note, String title, boolean status) {
-		super();
 		this.userId = userId;
 		this.projectId = projectId;
 		this.dueDate = dueDate;
