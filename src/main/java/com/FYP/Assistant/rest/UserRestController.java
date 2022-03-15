@@ -1,10 +1,11 @@
 package com.FYP.Assistant.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FYP.Assistant.dao.UserDAO;
 import com.FYP.Assistant.entity.User;
+import com.FYP.Assistant.error.ErrorResponse;
+import com.FYP.Assistant.error.DataNotFoundException;
 
 @RestController
 public class UserRestController {
@@ -28,6 +31,9 @@ public class UserRestController {
 	public User getUser(@RequestParam String id) {
 		
 		User user = userDAO.findById(Integer.parseInt(id));
+		
+		if(user == null)
+			throw new DataNotFoundException("User id=" + id + " not found");
 		
 		return user; 
 	}
@@ -61,5 +67,16 @@ public class UserRestController {
 		userDAO.deleteById(Integer.parseInt(id));
 		
 		return "Deleted user id - " + id;
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorResponse> handleException(DataNotFoundException ex){
+		ErrorResponse error = new ErrorResponse();
+		
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMessage(ex.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
 	}
 }
