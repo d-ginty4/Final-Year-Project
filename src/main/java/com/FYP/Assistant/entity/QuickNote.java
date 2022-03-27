@@ -16,6 +16,9 @@ public class QuickNote {
 	@Column(name="id")
 	private int id;
 	
+	@Column(name="title")
+	private String title;
+	
 	@Column(name="note")
 	private String note;
 	
@@ -32,7 +35,8 @@ public class QuickNote {
 		
 	}
 
-	public QuickNote(String note, boolean status, int projectId, int userId) {
+	public QuickNote(String title, String note, boolean status, int projectId, int userId) {
+		this.title = title;
 		this.note = note;
 		this.status = status;
 		this.projectId = projectId;
@@ -53,6 +57,22 @@ public class QuickNote {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public boolean isStatus() {

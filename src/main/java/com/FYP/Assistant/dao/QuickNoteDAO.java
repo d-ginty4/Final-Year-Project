@@ -1,5 +1,7 @@
 package com.FYP.Assistant.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -46,5 +48,15 @@ public class QuickNoteDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		currentSession.saveOrUpdate(theQuickNote);
+	}
+
+	@Transactional
+	public List<QuickNote> findAll(int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String hql = "FROM QuickNote Q WHERE Q.userId = " + id;
+		Query<QuickNote> query = currentSession.createQuery(hql);
+		
+		return query.list();
 	}
 }

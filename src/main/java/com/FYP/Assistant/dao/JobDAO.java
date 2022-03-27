@@ -1,5 +1,8 @@
 package com.FYP.Assistant.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.hibernate.Session;
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.FYP.Assistant.entity.Job;
+import com.FYP.Assistant.entity.QuickNote;
 import com.FYP.Assistant.entity.User;
 
 @Repository
@@ -46,5 +50,15 @@ public class JobDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		currentSession.saveOrUpdate(theJob);
+	}
+
+	@Transactional
+	public List<Job> findJobs(int id, String dueDate) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String hql = "FROM Job J WHERE J.userId = " + id + "AND J.dueDate = '" + dueDate + "'";
+		Query<Job> query = currentSession.createQuery(hql);
+		
+		return query.list();
 	}
 }

@@ -37,11 +37,12 @@ public class Project {
 		
 	}
 
-	public Project(String name, String description, LocalDate dueDate, boolean status) {
+	public Project(String name, String description, LocalDate dueDate, boolean status, int userId) {
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;
 		this.status = status;
+		this.userId = userId;
 	}
 
 	public int getId() {

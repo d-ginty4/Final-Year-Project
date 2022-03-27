@@ -1,5 +1,8 @@
 package com.FYP.Assistant.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +31,14 @@ public class QuickNoteRestController {
 		QuickNote note = quickNoteDAO.findById(Integer.parseInt(id));
 		
 		return note;
+	}
+	
+	@GetMapping("/allNotes")
+	public List<QuickNote> findAll(@RequestParam int id){
+		
+		List<QuickNote> notes = quickNoteDAO.findAll(id);
+		
+		return notes;
 	}
 	
 	@PostMapping("/note")
