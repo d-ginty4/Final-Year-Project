@@ -61,4 +61,10 @@ public class JobDAO {
 		
 		return query.list();
 	}
+
+	@Transactional
+	public List<Job> projectJobs(int userId, int projectId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

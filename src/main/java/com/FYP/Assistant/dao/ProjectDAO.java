@@ -1,5 +1,7 @@
 package com.FYP.Assistant.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.FYP.Assistant.entity.Project;
+import com.FYP.Assistant.entity.QuickNote;
 import com.FYP.Assistant.entity.User;
 
 @Repository
@@ -46,5 +49,15 @@ public class ProjectDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		currentSession.saveOrUpdate(theProject);
+	}
+
+	@Transactional
+	public List<Project> findUserProjects(int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String hql = "FROM Project P WHERE P.userId = " + id;
+		Query<Project> query = currentSession.createQuery(hql);
+		
+		return query.list();
 	}
 }

@@ -59,4 +59,14 @@ public class QuickNoteDAO {
 		
 		return query.list();
 	}
+
+	@Transactional
+	public List<QuickNote> projectNotes(int userId, int projectId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String hql = "FROM QuickNote Q WHERE Q.userId = " + userId + "AND Q.projectId = " + projectId;
+		Query<QuickNote> query = currentSession.createQuery(hql);
+		
+		return query.list();
+	}
 }

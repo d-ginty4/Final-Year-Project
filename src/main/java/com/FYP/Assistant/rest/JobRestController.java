@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.FYP.Assistant.dao.JobDAO;
 import com.FYP.Assistant.entity.Job;
+import com.FYP.Assistant.entity.QuickNote;
 
 @RestController
 public class JobRestController {
@@ -35,6 +36,14 @@ public class JobRestController {
 	@GetMapping("/userJobs")
 	public List<Job> userJobs(@RequestParam int id, @RequestParam String date){
 		List<Job> jobs = jobDAO.findJobs(id, date);
+		
+		return jobs;
+	}
+	
+	@GetMapping("/projectJobs")
+	public List<Job> projectNotes(@RequestParam int userId, @RequestParam int projectId){
+		
+		List<Job> jobs = jobDAO.projectJobs(userId, projectId);
 		
 		return jobs;
 	}
