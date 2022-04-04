@@ -43,9 +43,9 @@ public class QuickNoteRestController {
 	}
 	
 	@GetMapping("/projectNotes")
-	public List<QuickNote> projectNotes(@RequestParam int userId, @RequestParam int projectId){
+	public List<QuickNote> projectNotes(@RequestParam int projectId){
 		
-		List<QuickNote> notes = quickNoteDAO.projectNotes(userId, projectId);
+		List<QuickNote> notes = quickNoteDAO.projectNotes(projectId);
 		
 		return notes;
 	}
