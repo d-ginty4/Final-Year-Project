@@ -41,9 +41,9 @@ public class JobRestController {
 	}
 	
 	@GetMapping("/projectJobs")
-	public List<Job> projectNotes(@RequestParam int userId, @RequestParam int projectId){
+	public List<Job> projectNotes(@RequestParam int projectId){
 		
-		List<Job> jobs = jobDAO.projectJobs(userId, projectId);
+		List<Job> jobs = jobDAO.projectJobs(projectId);
 		
 		return jobs;
 	}

@@ -63,8 +63,12 @@ public class JobDAO {
 	}
 
 	@Transactional
-	public List<Job> projectJobs(int userId, int projectId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Job> projectJobs(int projectId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		String hql = "FROM Job J WHERE J.projectId = " + projectId;
+		Query<Job> query = currentSession.createQuery(hql);
+		
+		return query.list();
 	}
 }
