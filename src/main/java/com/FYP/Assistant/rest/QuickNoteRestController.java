@@ -28,7 +28,7 @@ public class QuickNoteRestController {
 	}
 	
 	@GetMapping("/note")
-	public QuickNote getJob(@RequestParam String id) {
+	public QuickNote getNote(@RequestParam String id) {
 		QuickNote note = quickNoteDAO.findById(Integer.parseInt(id));
 		
 		return note;
