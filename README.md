@@ -1,2 +1,2 @@
 # FYP Backend
-This repo contains the rest API's used by my Final Year Project. The rest API's are created using Spring Boot and will be hosted by github. The projects frontend is made using ElectronJS.
+This repo contains the rest API's used by my Final Year Project. The rest API's are created using Spring Boot and will be hosted by Heroku. The projects frontend is made using ElectronJS.
